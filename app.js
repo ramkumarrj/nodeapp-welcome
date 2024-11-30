@@ -27,7 +27,7 @@ app.get('/ready', (req, res) => {
 
 // Start the server on port 3000 only if this module is run directly
 if (require.main === module) {
-    const port = 5040;
+    const port = 3000;
     app.listen(port, () => {
         console.log(`Server listening on http://localhost:${port}`);
     });
