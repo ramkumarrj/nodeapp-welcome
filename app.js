@@ -1,4 +1,3 @@
-// app.js
 const express = require('express');
 const app = express();
 
@@ -6,6 +5,18 @@ const app = express();
 app.get('/', (req, res) => {
     res.send('<h1>Welcome to My Node.js Application!</h1><p>This is a simple application using Node.js and Express.</p>');
 });
+
+// Health check route (Liveness probe)
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
+
+// Readiness check route
+app.get('/ready', (req, res) => {
+    res.status(200).send('Ready');
+   });
+
 
 // Start the server on port 3000 only if this module is run directly
 if (require.main === module) {
@@ -16,4 +27,3 @@ if (require.main === module) {
 }
 
 module.exports = app; // Export the app for testing
-
