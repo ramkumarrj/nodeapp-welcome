@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 
+// Read environment variables from ConfigMap (populated in Kubernetes)
+const appName = process.env.APP_NAME || 'My Node.js Application';
+const appVersion = process.env.APP_VERSION || '1.0.0';
+
 // Define a route for the welcome page
 app.get('/', (req, res) => {
-    res.send('<h1>Welcome to My Node.js Application!</h1><p>This is a simple application using Node.js and Express.</p>');
+    res.send(`<h1>Welcome to ${appName}!</h1><p>This is version ${appVersion} of the application.</p>`);
 });
-
 // Health check route (Liveness probe)
 app.get('/health', (req, res) => {
     res.status(200).send('OK');
